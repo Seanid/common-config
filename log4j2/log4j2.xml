@@ -1,86 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!--ÈÕÖ¾¼¶±ðÒÔ¼°ÓÅÏÈ¼¶ÅÅÐò: OFF > FATAL > ERROR > WARN > INFO > DEBUG > TRACE > ALL -->
-<!--ConfigurationºóÃæµÄstatus£¬Õâ¸öÓÃÓÚÉèÖÃlog4j2×ÔÉíÄÚ²¿µÄÐÅÏ¢Êä³ö£¬½ö¶Ôlog4j2ÓÐÐ§£¬¿ÉÒÔ²»ÉèÖÃ£¬µ±ÉèÖÃ³ÉtraceÊ±£¬Äã»á¿´µ½log4j2ÄÚ²¿¸÷ÖÖÏêÏ¸Êä³ö-->
-<!--monitorInterval£ºLog4jÄÜ¹»×Ô¶¯¼ì²âÐÞ¸ÄÅäÖÃÎÄ¼þºÍÖØÐÂÅäÖÃ±¾Éí£¬ÉèÖÃ¼ä¸ôÃëÊý-->
-<configuration status="WARN" monitorInterval="30"> 
-	<!--¹«ÓÃ²ÎÊý-->
-	<properties>
-        <!--ÉèÖÃÈÕÖ¾ÔÚÓ²ÅÌÉÏÊä³öµÄÄ¿Â¼-->
-        <property name="logPath">/home</property>
-  </properties>
-	
-  <!--appender ÈÕÖ¾Êä³öÉèÖÃ ³£ÓÃ°üÀ¨console,File,RollingFile-->  
-  <appenders> 
-    <!--¿ØÖÆÌ¨µÄÅäÖÃ-->  
-    <!--
-    	PatternLayout ³£ÓÃÍ¨Åä·û
-    	
-    	%d{HH:mm:ss.SSS} ±íÊ¾Êä³öµ½ºÁÃëµÄÊ±¼ä
+<!--æ—¥å¿—çº§åˆ«ä»¥åŠä¼˜å…ˆçº§æŽ’åº: OFF > FATAL > ERROR > WARN > INFO > DEBUG > TRACE > ALL -->
+<!--ConfigurationåŽé¢çš„statusï¼Œè¿™ä¸ªç”¨äºŽè®¾ç½®log4j2è‡ªèº«å†…éƒ¨çš„ä¿¡æ¯è¾“å‡ºï¼Œä»…å¯¹log4j2æœ‰æ•ˆï¼Œå¯ä»¥ä¸è®¾ç½®ï¼Œå½“è®¾ç½®æˆtraceæ—¶ï¼Œä½ ä¼šçœ‹åˆ°log4j2å†…éƒ¨å„ç§è¯¦ç»†è¾“å‡º-->
+<!--monitorIntervalï¼šLog4jèƒ½å¤Ÿè‡ªåŠ¨æ£€æµ‹ä¿®æ”¹é…ç½®æ–‡ä»¶å’Œé‡æ–°é…ç½®æœ¬èº«ï¼Œè®¾ç½®é—´éš”ç§’æ•°-->
+<configuration status="WARN" monitorInterval="30">
+    <properties>
+        <!--è®¾ç½®æ—¥å¿—åœ¨ç¡¬ç›˜ä¸Šè¾“å‡ºçš„ç›®å½•-->
+        <property name="logPath">log</property>
+    </properties>
+    <!--appender æ—¥å¿—è¾“å‡ºè®¾ç½® å¸¸ç”¨åŒ…æ‹¬console,File,RollingFile-->
+    <appenders>
+        <!--æŽ§åˆ¶å°çš„é…ç½®-->
+        <!--
+            PatternLayout å¸¸ç”¨é€šé…ç¬¦
 
-			%t Êä³öµ±Ç°Ïß³ÌÃû³Æ
-			
-			%-5p/%-5level Êä³öÈÕÖ¾¼¶±ð£¬-5±íÊ¾×ó¶ÔÆë²¢ÇÒ¹Ì¶¨Êä³ö5¸ö×Ö·û£¬Èç¹û²»×ãÔÚÓÒ±ß²¹0
-			
-			%logger Êä³öloggerÃû³Æ£¬ÒòÎªRoot LoggerÃ»ÓÐÃû³Æ£¬ËùÒÔÃ»ÓÐÊä³ö
-			
-			%msg ÈÕÖ¾ÎÄ±¾
-			
-			%n »»ÐÐ
-			
-			%F Êä³öËùÔÚµÄÀàÎÄ¼þÃû£¬ÈçClient.java
-			
-			%L Êä³öÐÐºÅ
-			
-			%M Êä³öËùÔÚ·½·¨Ãû
-			
-			%l Êä³öÓï¾äËùÔÚµÄÐÐÊý, °üÀ¨ÀàÃû¡¢·½·¨Ãû¡¢ÎÄ¼þÃû¡¢ÐÐÊý
-    	
-    	¸ü¶à²éÑ¯ url : https://logging.apache.org/log4j/2.x/manual/layouts.html
-    	
-    -->
-    
-    <console name="Console" target="SYSTEM_OUT"> 
-      <!--Êä³öÈÕÖ¾µÄ¸ñÊ½-->  
-      <PatternLayout pattern="[%d{HH:mm:ss:SSS}] [%-5p][%logger][%T][%M][%l] - %m%n"/> 
-    </console>  
-    <!--
-	    ÎÄ¼þ»á´òÓ¡³öËùÓÐÐÅÏ¢
-	    fileName Êä³öÎÄ¼þ
-	    append ÊÇ·ñµþ¼Ó£¬²âÊÔ»·¾³Ê¹ÓÃfalse¿ÉÒÔÖØÆôµÄÊ±ºòÇå¿Õ
-	    ÏêÏ¸URL:https://logging.apache.org/log4j/2.x/manual/appenders.html#FileAppender
-    -->  
-    <File name="log" fileName="log/test.log" append="false"> 
-      <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n"/> 
-    </File>  
-    
-    <!-- 
-    		¸ù¾ÝÃ¿Ð¡Ê±¡¢´óÐ¡²ð·ÖÎÄ¼þ£¬Ã¿´Î´óÐ¡³¬¹ýsize£¬ÔòÕâsize´óÐ¡µÄÈÕÖ¾»á×Ô¶¯´æÈë°´Äê·Ý-ÔÂ·Ý½¨Á¢µÄÎÄ¼þ¼ÐÏÂÃæ²¢½øÐÐÑ¹Ëõ£¬×÷Îª´æµµ-->  
-    <RollingFile name="RollingFileInfo" fileName="${sys:user.home}/logs/info.log" filePattern="${sys:user.home}/logs/$${date:yyyy-MM}/info-%d{yyyy-MM-dd-HH}-%i.log"> 
-      <!--¿ØÖÆÌ¨Ö»Êä³ölevel¼°ÒÔÉÏ¼¶±ðµÄÐÅÏ¢£¨onMatch£©£¬ÆäËûµÄÖ±½Ó¾Ü¾ø£¨onMismatch£©-->  
-      <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>  
-      <PatternLayout pattern="[%d{HH:mm:ss:SSS}] [%p] - %l - %m%n"/>  
-      <Policies> 
-      	<!--Ã¿Ð¡Ê±²ð·Ö-->
-        <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
-        <!--ÎÄ¼þ´óÐ¡²ð·Ö-->
-        <SizeBasedTriggeringPolicy size="100 MB"/> 
-        
-      </Policies> 
-      	<!-- DefaultRolloverStrategyÊôÐÔÈç²»ÉèÖÃ£¬ÔòÄ¬ÈÏÎª×î¶àÍ¬Ò»ÎÄ¼þ¼ÐÏÂ7¸öÎÄ¼þ£¬ÕâÀïÉèÖÃÁË20 -->  
-      	<DefaultRolloverStrategy max="20"/> 
-    </RollingFile>  
-   
-  </appenders>  
-  <!--Ö»ÓÐ¶¨ÒåÁËlogger²¢ÒýÈëµÄappender£¬appender²Å»áÉúÐ§-->  
-  <loggers> 
-    <!--²ÉÓÃ¼Ì³ÐÖÆ¹ýÂËµôspringºÍmybatisµÄÒ»Ð©ÎÞÓÃµÄDEBUGÐÅÏ¢-->  
-    <logger name="org.springframework" level="INFO"/>  
-    <logger name="org.mybatis" level="INFO"/>  
-    <root level="all"> 
-      <appender-ref ref="Console"/>  
-      <appender-ref ref="log" />
-      <appender-ref ref="RollingFileInfo"/>  
-    </root> 
-  </loggers> 
+            %d{HH:mm:ss.SSS} è¡¨ç¤ºè¾“å‡ºåˆ°æ¯«ç§’çš„æ—¶é—´
+
+                %t è¾“å‡ºå½“å‰çº¿ç¨‹åç§°
+
+                %-5p/%-5level è¾“å‡ºæ—¥å¿—çº§åˆ«ï¼Œ-5è¡¨ç¤ºå·¦å¯¹é½å¹¶ä¸”å›ºå®šè¾“å‡º5ä¸ªå­—ç¬¦ï¼Œå¦‚æžœä¸è¶³åœ¨å³è¾¹è¡¥0
+
+                %logger è¾“å‡ºloggeråç§°ï¼Œå› ä¸ºRoot Loggeræ²¡æœ‰åç§°ï¼Œæ‰€ä»¥æ²¡æœ‰è¾“å‡º
+
+                %msg æ—¥å¿—æ–‡æœ¬
+
+                %n æ¢è¡Œ
+
+                %F è¾“å‡ºæ‰€åœ¨çš„ç±»æ–‡ä»¶åï¼Œå¦‚Client.java
+
+                %L è¾“å‡ºè¡Œå·
+
+                %M è¾“å‡ºæ‰€åœ¨æ–¹æ³•å
+
+                %l è¾“å‡ºè¯­å¥æ‰€åœ¨çš„è¡Œæ•°, åŒ…æ‹¬ç±»åã€æ–¹æ³•åã€æ–‡ä»¶åã€è¡Œæ•°
+
+            æ›´å¤šæŸ¥è¯¢ url : https://logging.apache.org/log4j/2.x/manual/layouts.html
+
+        -->
+
+        <console name="Console" target="SYSTEM_OUT">
+            <!--è¾“å‡ºæ—¥å¿—çš„æ ¼å¼-->
+            <PatternLayout
+                    pattern="[SYSTEM] %d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] %class %X{myInfo} %L %M - %msg%xEx%n"/>
+        </console>
+        <!--
+            æ–‡ä»¶ä¼šæ‰“å°å‡ºæ‰€æœ‰ä¿¡æ¯
+            fileName è¾“å‡ºæ–‡ä»¶
+            append æ˜¯å¦å åŠ ï¼Œæµ‹è¯•çŽ¯å¢ƒä½¿ç”¨falseå¯ä»¥é‡å¯çš„æ—¶å€™æ¸…ç©º
+            è¯¦ç»†URL:https://logging.apache.org/log4j/2.x/manual/appenders.html#FileAppender
+        -->
+        <File name="log" fileName="${logPath}/test.log" append="true">
+            <PatternLayout
+                    pattern="[SYSTEM] %d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] %class %X{myInfo} %L %M - %msg%xEx%n"/>
+        </File>
+
+        <!--
+            æ ¹æ®æ¯å°æ—¶ã€å¤§å°æ‹†åˆ†æ–‡ä»¶ï¼Œæ¯æ¬¡å¤§å°è¶…è¿‡sizeï¼Œåˆ™è¿™sizeå¤§å°çš„æ—¥å¿—ä¼šè‡ªåŠ¨å­˜å…¥æŒ‰å¹´ä»½-æœˆä»½å»ºç«‹çš„æ–‡ä»¶å¤¹ä¸‹é¢å¹¶è¿›è¡ŒåŽ‹ç¼©ï¼Œä½œä¸ºå­˜æ¡£
+            ä»¥gzç»“å°¾æ—¶ï¼Œä¼šè¿›è¡ŒåŽ‹ç¼©
+        -->
+        <RollingFile name="RollingFileInfo" fileName="${logPath}/info.log"
+                     filePattern="${logPath}/$${date:yyyy-MM}/info-%d{yyyy-MM-dd-HH}-%i.log">
+            <!--æŽ§åˆ¶å°åªè¾“å‡ºlevelåŠä»¥ä¸Šçº§åˆ«çš„ä¿¡æ¯ï¼ˆonMatchï¼‰ï¼Œå…¶ä»–çš„ç›´æŽ¥æ‹’ç»ï¼ˆonMismatchï¼‰-->
+            <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="[SYSTEM] %d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] %class %X{myInfo} %L %M - %msg%xEx%n"/>
+            <Policies>
+                <!--æ¯å°æ—¶æ‹†åˆ†-->
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <!--æ–‡ä»¶å¤§å°æ‹†åˆ†-->
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+
+            </Policies>
+            <!-- DefaultRolloverStrategyå±žæ€§å¦‚ä¸è®¾ç½®ï¼Œåˆ™é»˜è®¤ä¸ºæœ€å¤šåŒä¸€æ–‡ä»¶å¤¹ä¸‹7ä¸ªæ–‡ä»¶ï¼Œè¿™é‡Œè®¾ç½®äº†20 -->
+            <DefaultRolloverStrategy max="20"/>
+        </RollingFile>
+
+
+
+
+
+    </appenders>
+    <!--åªæœ‰å®šä¹‰äº†loggerå¹¶å¼•å…¥çš„appenderï¼Œappenderæ‰ä¼šç”Ÿæ•ˆ-->
+    <loggers>
+        <!--é‡‡ç”¨ç»§æ‰¿åˆ¶è¿‡æ»¤æŽ‰springå’Œmybatisçš„ä¸€äº›æ— ç”¨çš„DEBUGä¿¡æ¯-->
+        <logger name="org.springframework" level="INFO"/>
+        <logger name="org.mybatis" level="INFO"/>
+        <!--<root level="all">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="log"/>
+            <appender-ref ref="RollingFileInfo"/>
+        </root>-->
+
+        <asyncRoot level="INFO" includeLocation="true">
+            <AppenderRef ref="RollingFileInfo"/>
+        </asyncRoot>
+    </loggers>
 </configuration>
